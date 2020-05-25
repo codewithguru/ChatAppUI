@@ -35,55 +35,70 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
 
   void showModal(){
     showModalBottomSheet(
-      context: context,
-      builder: (context){
-        return Container(
-          height: MediaQuery.of(context).size.height/2,
-          color: Color(0xff737373),
-          child: Container(
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.only(topRight: Radius.circular(20),topLeft: Radius.circular(20)),
-            ),
-            child: Column(
-              children: <Widget>[
-                SizedBox(height: 16,),
-                Center(
-                  child: Container(
-                    height: 4,
-                    width: 50,
-                    color: Colors.grey.shade200,
-                  ),
+        context: context,
+        isScrollControlled: true,
+        builder: (context) {
+          return Container(
+            // height: MediaQuery.of(context).size.height / 2,
+            color: Color(0xff737373),
+            child: SingleChildScrollView(
+              padding: EdgeInsets.only(
+                bottom: MediaQuery.of(context).viewInsets.bottom,
+              ),
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.only(
+                      topRight: Radius.circular(20),
+                      topLeft: Radius.circular(20)),
                 ),
-                SizedBox(height: 10,),
-                ListView.builder(
-                  itemCount: menuItems.length,
-                  shrinkWrap: true,
-                  physics: NeverScrollableScrollPhysics(),
-                  itemBuilder: (context, index){
-                    return Container(
-                      padding: EdgeInsets.only(top: 10,bottom: 10),
-                      child: ListTile(
-                        leading: Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(30),
-                            color: menuItems[index].color.shade50,
-                          ),
-                          height: 50,
-                          width: 50,
-                          child: Icon(menuItems[index].icons,size: 20,color: menuItems[index].color.shade400,),
-                        ),
-                        title: Text(menuItems[index].text),
+                child: Column(
+                  children: <Widget>[
+                    SizedBox(
+                      height: 16,
+                    ),
+                    Center(
+                      child: Container(
+                        height: 4,
+                        width: 50,
+                        color: Colors.grey.shade200,
                       ),
-                    );
-                  },
-                )
-              ],
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    ListView.builder(
+                      itemCount: menuItems.length,
+                      shrinkWrap: true,
+                      physics: NeverScrollableScrollPhysics(),
+                      itemBuilder: (context, index) {
+                        return Container(
+                          padding: EdgeInsets.only(top: 10, bottom: 10),
+                          child: ListTile(
+                            leading: Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(30),
+                                color: menuItems[index].color.shade50,
+                              ),
+                              height: 50,
+                              width: 50,
+                              child: Icon(
+                                menuItems[index].icons,
+                                size: 20,
+                                color: menuItems[index].color.shade400,
+                              ),
+                            ),
+                            title: Text(menuItems[index].text),
+                          ),
+                        );
+                      },
+                    )
+                  ],
+                ),
+              ),
             ),
-          ),
-        );
-      }
-    );
+          );
+        });
   }
 
   @override
@@ -113,7 +128,7 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
               child: Row(
                 children: <Widget>[
                   GestureDetector(
-                    onTap: (){
+                    onTap: () {
                       showModal();
                     },
                     child: Container(
@@ -123,17 +138,22 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
                         color: Colors.blueGrey,
                         borderRadius: BorderRadius.circular(30),
                       ),
-                      child: Icon(Icons.add,color: Colors.white,size: 21,),
+                      child: Icon(
+                        Icons.add,
+                        color: Colors.white,
+                        size: 21,
+                      ),
                     ),
                   ),
-                  SizedBox(width: 16,),
+                  SizedBox(
+                    width: 16,
+                  ),
                   Expanded(
                     child: TextField(
                       decoration: InputDecoration(
-                        hintText: "Type message...",
-                        hintStyle: TextStyle(color: Colors.grey.shade500),
-                        border: InputBorder.none
-                      ),
+                          hintText: "Type message...",
+                          hintStyle: TextStyle(color: Colors.grey.shade500),
+                          border: InputBorder.none),
                     ),
                   ),
                 ],
@@ -143,10 +163,13 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
           Align(
             alignment: Alignment.bottomRight,
             child: Container(
-              padding: EdgeInsets.only(right: 30,bottom: 50),
+              padding: EdgeInsets.only(right: 30, bottom: 50),
               child: FloatingActionButton(
-                onPressed: (){},
-                child: Icon(Icons.send,color: Colors.white,),
+                onPressed: () {},
+                child: Icon(
+                  Icons.send,
+                  color: Colors.white,
+                ),
                 backgroundColor: Colors.pink,
                 elevation: 0,
               ),
